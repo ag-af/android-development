@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText secondNumberInput;
     Button addButton;
     TextView result;
+    Button clearButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,25 @@ public class MainActivity extends AppCompatActivity {
         secondNumberInput = findViewById(R.id.secondNumberInput);
         addButton = findViewById(R.id.addButton);
         result = findViewById(R.id.result);
+        clearButton = findViewById(R.id.clearButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+                addNumbers();
+            }
+        });
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearButton();
+            }
+        });
+    }
+
+    public void addNumbers() {
                 String firstNumber = firstNumberInput.getText().toString();
                 String secondNumber = secondNumberInput.getText().toString();
 
@@ -51,13 +66,15 @@ public class MainActivity extends AppCompatActivity {
                     int resultInt = firstNumberInt + secondNumberInt;
 
                     result.setText(String.valueOf(resultInt));
-//                    Log.i("Result: ", result);
+                    Log.i("Result: ", String.valueOf(result));
                 } else {
                     result.setText("Please enter two numbers");
                 }
             }
-        });
-    }
 
-
-}
+            public void clearButton() {
+            firstNumberInput.setText("");
+            secondNumberInput.setText("");
+            result.setText("");
+            }
+        }
